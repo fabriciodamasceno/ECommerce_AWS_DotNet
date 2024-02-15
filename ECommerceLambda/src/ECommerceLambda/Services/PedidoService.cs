@@ -1,0 +1,27 @@
+﻿using Amazon.SQS;
+using Amazon.SQS.Model;
+using ECommerceLambda.Models;
+using System.Text.Json;
+
+namespace ECommerceLambda.Services
+{
+    public class PedidoService : IPedidoService
+    {
+        private readonly IAmazonSQS sqsClient;
+
+        public PedidoService(IAmazonSQS sqsClient)
+        {
+            this.sqsClient = sqsClient;
+        }
+        public async Task EnviarPedido(Pedido pedido)
+        {
+            var request = new SendMessageRequest
+            {
+                MessageBody = JsonSerializer.Serialize(pedido),
+                QueueUrl = "https://sqs.sa-east-1.amazonaws.com/619425175946/pedido-criado-sqs"
+            };
+
+            await this.sqsClient.SendMessageAsync(request);
+        }
+    }
+}
