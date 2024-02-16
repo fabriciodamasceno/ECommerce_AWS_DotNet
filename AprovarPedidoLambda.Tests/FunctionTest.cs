@@ -1,5 +1,6 @@
 using Amazon.Lambda.SQSEvents;
 using Amazon.Lambda.TestUtilities;
+using Amazon.Runtime.Internal.Transform;
 using ECommerceLambda.Domain.Models;
 using System.Text.Json;
 
@@ -47,7 +48,11 @@ namespace AprovarPedidoLambda.Tests
                 {
                     new SQSEvent.SQSMessage
                     {
-                        Body = JsonSerializer.Serialize(pedido)
+                        Body = JsonSerializer.Serialize(pedido),
+                        Attributes = new Dictionary<string, string>()
+                        {
+                            { "ApproximateReceiveCount", "1" }
+                        }
                     }
                 }
             };

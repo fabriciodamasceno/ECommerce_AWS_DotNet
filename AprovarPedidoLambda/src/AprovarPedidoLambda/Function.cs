@@ -3,6 +3,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.Extensions.NETCore.Setup;
 using Amazon.Lambda.Core;
 using Amazon.Lambda.SQSEvents;
+using Amazon.SQS;
 using AprovarPedidoLambda.Repositories;
 using AprovarPedidoLambda.Services;
 using ECommerceLambda.Domain.Models;
@@ -26,6 +27,8 @@ namespace AprovarPedidoLambda
             _serviceCollection.AddScoped<IDynamoDBContext, DynamoDBContext>();
             _serviceCollection.AddScoped<IAprovarPedidoService, AprovarPedidoService>();
             _serviceCollection.AddScoped<IPedidoRepository, PedidoRepository>();
+            _serviceCollection.AddScoped<IAmazonSQS, AmazonSQSClient>();
+            _serviceCollection.AddScoped<IMessageService, MessageService>();
 
             var serviceProvider = _serviceCollection.BuildServiceProvider();
             _service = serviceProvider.GetRequiredService<IAprovarPedidoService>();
