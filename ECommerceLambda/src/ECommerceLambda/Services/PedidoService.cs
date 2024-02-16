@@ -1,6 +1,6 @@
 ﻿using Amazon.SQS;
 using Amazon.SQS.Model;
-using ECommerceLambda.Models;
+using ECommerceLambda.Domain.Models;
 using System.Text.Json;
 
 namespace ECommerceLambda.Services
