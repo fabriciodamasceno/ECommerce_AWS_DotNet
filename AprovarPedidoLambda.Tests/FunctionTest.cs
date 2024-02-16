@@ -26,7 +26,7 @@ namespace AprovarPedidoLambda.Tests
                         Complemento = "Sobrado"
                     },
                 },
-                PedidoId = new Guid(),
+                PedidoId = Guid.NewGuid(),
                 StatusPedido = StatusPedidoEnum.AGUARDANDO_PAGAMENTO,
                 ItensPedido = new List<ItemPedido> 
                 { 
