@@ -42,7 +42,13 @@ namespace AprovarPedidoLambda
 
         private async Task ProcessarMensagem(SQSEvent.SQSMessage message, ILambdaContext context)
         {
-            context.Logger.Log("Mensagem processada!!!");
+            context.Logger.Log("Mensagem sem tratamento");
+            context.Logger.Log(JsonSerializer.Serialize(message));
+
+            context.Logger.Log("ApproximateReceiveCount");
+            context.Logger.Log(message.Attributes["ApproximateReceiveCount"]);
+
+            context.Logger.Log("Body");
             context.Logger.Log(message.Body);
 
             var pedido = JsonSerializer.Deserialize<Pedido>(message.Body);
