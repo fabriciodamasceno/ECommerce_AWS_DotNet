@@ -20,14 +20,9 @@ namespace AprovarPedidoLambda
 
         public Function()
         {
-            var _serviceCollection = new ServiceCollection();
+            var _serviceCollection = new ServiceCollection();            
 
-            _serviceCollection.AddAWSService<IAmazonDynamoDB>(new AWSOptions
-            {
-                Region = Amazon.RegionEndpoint.SAEast1 
-            }); 
-
-           // _serviceCollection.AddScoped<IAmazonDynamoDB, AmazonDynamoDBClient>();
+            _serviceCollection.AddScoped<IAmazonDynamoDB, AmazonDynamoDBClient>();
             _serviceCollection.AddScoped<IDynamoDBContext, DynamoDBContext>();
             _serviceCollection.AddScoped<IAprovarPedidoService, AprovarPedidoService>();
             _serviceCollection.AddScoped<IPedidoRepository, PedidoRepository>();

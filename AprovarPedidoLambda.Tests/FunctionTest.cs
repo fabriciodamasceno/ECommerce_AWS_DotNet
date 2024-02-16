@@ -1,12 +1,13 @@
-using Amazon.Lambda.TestUtilities;
 using Amazon.Lambda.SQSEvents;
+using Amazon.Lambda.TestUtilities;
 using ECommerceLambda.Domain.Models;
 using System.Text.Json;
 
 namespace AprovarPedidoLambda.Tests
 {
     public class FunctionTest
-    {
+    {       
+
         [Fact]
         public async void Deve_salvar_um_pedido_com_sucesso()
         {
